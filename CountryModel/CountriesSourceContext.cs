@@ -22,6 +22,10 @@ public partial class CountriesSourceContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
+        if(optionsBuilder.IsConfigured)
+        {
+            return;
+        }
         IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
         var config = builder.Build();
         optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
@@ -43,7 +47,7 @@ public partial class CountriesSourceContext : DbContext
 
         modelBuilder.Entity<Country>(entity =>
         {
-            entity.HasKey(e => e.CountryId).HasName("PK__Country__10D160BFED81D79F");
+            entity.HasKey(e => e.CountryID).HasName("PK__Country__10D160BFED81D79F");
 
             entity.Property(e => e.Iso2).IsFixedLength();
             entity.Property(e => e.Iso3).IsFixedLength();

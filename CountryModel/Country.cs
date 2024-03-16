@@ -11,7 +11,7 @@ public partial class Country
 {
     [Key]
     [Column("CountryID")]
-    public int CountryId { get; set; }
+    public int CountryID { get; set; }
 
     [StringLength(20)]
     [Unicode(false)]
@@ -21,7 +21,7 @@ public partial class Country
     [Unicode(false)]
     public string Iso2 { get; set; } = null!;
 
-    [StringLength(2)]
+    [StringLength(3)]
     [Unicode(false)]
     public string Iso3 { get; set; } = null!;
 

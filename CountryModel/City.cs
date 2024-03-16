@@ -20,7 +20,7 @@ public partial class City
 
     [Column("CountryID")]
     [StringLength(10)]
-    public string CountryId { get; set; } = null!;
+    public int CountryId { get; set; }
 
     public required string Name { get; set; }
 

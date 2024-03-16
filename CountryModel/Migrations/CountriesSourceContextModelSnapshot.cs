@@ -30,7 +30,7 @@ namespace CountryModel.Migrations
                     b.Property<string>("CountryId")
                         .IsRequired()
                         .HasMaxLength(10)
-                        .HasColumnType("nchar(10)")
+                        .HasColumnType("int")
                         .HasColumnName("CountryID")
                         .IsFixedLength();
 
@@ -73,7 +73,7 @@ namespace CountryModel.Migrations
                         .IsRequired()
                         .HasMaxLength(2)
                         .IsUnicode(false)
-                        .HasColumnType("char(2)")
+                        .HasColumnType("char(3)")
                         .IsFixedLength();
 
                     b.Property<string>("Name")
