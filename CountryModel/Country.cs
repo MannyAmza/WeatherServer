@@ -13,7 +13,7 @@ public partial class Country
     [Column("CountryID")]
     public int CountryID { get; set; }
 
-    [StringLength(20)]
+    //[StringLength(50)]
     [Unicode(false)]
     public string Name { get; set; } = null!;
 
