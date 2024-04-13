@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CountryModel;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using WeatherServer.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WeatherServer.Controllers
 {
@@ -23,6 +24,9 @@ namespace WeatherServer.Controllers
             return await context.Cities.ToListAsync();
         }
 
+        [Authorize]
+
+
         [HttpGet("GetPopulation")]
         public async Task<ActionResult<IEnumerable<CountryPopulation>>> GetPopulation()
         {
@@ -36,7 +40,7 @@ namespace WeatherServer.Controllers
             return await query.ToListAsync();
         }
 
-        [HttpGet("GetPopulation2")]
+        /*[HttpGet("GetPopulation2")]
         public async Task<ActionResult<IEnumerable<CountryPopulation>>> GetPopulation2()
         {
             IQueryable<CountryPopulation> query = context.Countries.Select(c =>
@@ -47,6 +51,6 @@ namespace WeatherServer.Controllers
                                                     //Population = c.City.Sum(testc => testc.Population)
                                                 });
             return await query.ToListAsync();
-        }
+        }*/
     }
 }
