@@ -25,8 +25,6 @@ namespace WeatherServer.Controllers
         }
 
         [Authorize]
-
-
         [HttpGet("GetPopulation")]
         public async Task<ActionResult<IEnumerable<CountryPopulation>>> GetPopulation()
         {
@@ -35,7 +33,7 @@ namespace WeatherServer.Controllers
                     {
                         CountryID = c.CountryID,
                         Name = c.Name,
-                        //Population = c.City.Sum(testc => testc.Population)
+                        Population = c.City.Sum(testc => testc.Population)
                     };
             return await query.ToListAsync();
         }
