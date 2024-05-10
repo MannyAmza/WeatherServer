@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System.Collections.Generic;
-using System.Reflection.Emit;
 
 namespace WorldCitiesModel;
 
@@ -16,6 +14,7 @@ public class WorldCitiesContext : IdentityDbContext<WorldCitiesUser>
         : base(options)
     {
     }
+
     public virtual DbSet<City> Cities { get; set; } = null!;
 
     public virtual DbSet<Country> Countries { get; set; } = null!;
