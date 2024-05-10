@@ -4,17 +4,16 @@ using Microsoft.EntityFrameworkCore;
 using WeatherServer.DTOs;
 using WorldCitiesModel;
 
-namespace WeatherServer.Controllers;
+namespace ServerApi.Controllers;
 
-    [Route("api/[controller]")]
-    [ApiController]
+[Route("api/[controller]")]
+[ApiController]
 public class CitiesController(WorldCitiesContext context) : ControllerBase
-    {
-
-        // GET: api/Cities
-        [HttpGet]
+{
+    // GET: api/Cities
+    [HttpGet]
     public async Task<ActionResult<IEnumerable<CityDto>>> GetCities()
-        {
+    {
         IQueryable<CityDto> cityQry = context.Cities.Select(t => new CityDto
         {
             Id = t.Id,
@@ -24,10 +23,10 @@ public class CitiesController(WorldCitiesContext context) : ControllerBase
             Country = t.Country.Name
         }).Take(100);
         return await cityQry.ToListAsync();
-        }
+    }
 
     // GET: api/Cities/5
-        [Authorize]
+    [Authorize]
     [HttpGet("{id:int}")]
     public async Task<ActionResult<City>> GetCity(int id)
     {
@@ -60,7 +59,7 @@ public class CitiesController(WorldCitiesContext context) : ControllerBase
         catch (DbUpdateConcurrencyException)
         {
             if (!CityExists(id))
-        {
+            {
                 return NotFound();
             }
 
@@ -74,20 +73,20 @@ public class CitiesController(WorldCitiesContext context) : ControllerBase
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
     public async Task<ActionResult<City>> PostCity(City city)
-                    {
+    {
         context.Cities.Add(city);
         await context.SaveChangesAsync();
 
         return CreatedAtAction("GetCity", new { id = city.Id }, city);
-        }
+    }
 
     // DELETE: api/Cities/5
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteCity(int id)
-        {
+    {
         City? city = await context.Cities.FindAsync(id);
         if (city == null)
-                                                {
+        {
             return NotFound();
         }
 
